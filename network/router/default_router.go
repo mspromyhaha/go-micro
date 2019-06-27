@@ -206,6 +206,11 @@ func (r *router) manageServiceRoutes(w registry.Watcher, metric int) error {
 	return watchErr
 }
 
+// Update receives an advert from another router and updates the local table
+func (r *router) Update(a *Advertisement) error {
+	return nil
+}
+
 // Stop stops the router
 func (r *router) Stop() error {
 	// notify all goroutines to finish

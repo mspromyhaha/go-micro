@@ -17,6 +17,8 @@ type Router interface {
 	Network() string
 	// Advertise starts advertising the routes to the network
 	Advertise() (<-chan *Advertisement, error)
+	// Update the router with advertisement from other router
+	Update(*Advertisement) error
 	// Stop stops the router
 	Stop() error
 	// String returns debug info
