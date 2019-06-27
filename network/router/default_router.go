@@ -71,28 +71,44 @@ func (r *router) Network() string {
 
 // Advertise advertises the routes to the network. It is a blocking function.
 // It returns error if any of the launched goroutines fail with error.
-func (r *router) Advertise() error {
+func (r *router) Advertise() (<-chan *Advertisement, error) {
 	// add local service routes into the routing table
 	if err := r.addServiceRoutes(r.opts.Registry, "local", DefaultLocalMetric); err != nil {
-		return fmt.Errorf("failed adding routes: %v", err)
+		return nil, fmt.Errorf("failed adding routes: %v", err)
 	}
 
 	localWatcher, err := r.opts.Registry.Watch()
 	if err != nil {
-		return fmt.Errorf("failed to create registry watcher: %v", err)
+		return nil, fmt.Errorf("failed to create registry watcher: %v", err)
 	}
 
 	// error channel collecting goroutine errors
 	errChan := make(chan error, 1)
+	// advertisement channel for route advertisements
+	advertChan := make(chan *Advertisement)
 
 	r.wg.Add(1)
+
 	go func() {
 		defer r.wg.Done()
+
 		// watch local registry and register routes in routine table
 		errChan <- r.manageServiceRoutes(localWatcher, DefaultLocalMetric)
 	}()
 
-	return <-errChan
+	go func() {
+		select {
+		// wait for exit chan
+		case <-r.exit:
+		// wait for error
+		case <-errChan:
+		}
+
+		// close the advertise channel
+		close(advertChan)
+	}()
+
+	return advertChan, nil
 }
 
 // addServiceRoutes adds all services in given registry to the routing table.

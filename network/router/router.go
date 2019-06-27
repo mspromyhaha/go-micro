@@ -16,11 +16,16 @@ type Router interface {
 	// Network returns the network address of the router
 	Network() string
 	// Advertise starts advertising the routes to the network
-	Advertise() error
+	Advertise() (<-chan *Advertisement, error)
 	// Stop stops the router
 	Stop() error
 	// String returns debug info
 	String() string
+}
+
+// Advertisement is sent by the router
+type Advertisement struct {
+	Route *Route
 }
 
 // Option used by the router
