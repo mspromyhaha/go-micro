@@ -67,15 +67,17 @@ require (
 	github.com/stretchr/objx v0.2.0 // indirect
 	github.com/technoweenie/multipartstreamer v1.0.1 // indirect
 	go.opencensus.io v0.22.0 // indirect
-	golang.org/x/crypto v0.0.0-20190618222545-ea8f1a30c443
-	golang.org/x/exp v0.0.0-20190510132918-efd6b22b2522 // indirect
-	golang.org/x/image v0.0.0-20190618124811-92942e4437e2 // indirect
-	golang.org/x/mobile v0.0.0-20190607214518-6fa95d984e88 // indirect
-	golang.org/x/mod v0.1.0 // indirect
-	golang.org/x/net v0.0.0-20190620200207-3b0461eec859
-	golang.org/x/sys v0.0.0-20190621062556-bf70e4678053 // indirect
-	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4 // indirect
-	golang.org/x/tools v0.0.0-20190620191750-1fa568393b23 // indirect
+	golang.org/x/crypto v0.0.0-20190510104115-cbcb75029529
+	golang.org/x/net v0.0.0-20190613194153-d28f0bde5980
+	//golang.org/x/crypto v0.0.0-20190618222545-ea8f1a30c443
+	//golang.org/x/exp v0.0.0-20190510132918-efd6b22b2522 // indirect
+	//golang.org/x/image v0.0.0-20190618124811-92942e4437e2 // indirect
+	//golang.org/x/mobile v0.0.0-20190607214518-6fa95d984e88 // indirect
+	//golang.org/x/mod v0.1.0 // indirect
+	//golang.org/x/net v0.0.0-20190620200207-3b0461eec859
+	//golang.org/x/sys v0.0.0-20190621062556-bf70e4678053 // indirect
+	//golang.org/x/time v0.0.0-20190308202827-9d24e82272b4 // indirect
+	//golang.org/x/tools v0.0.0-20190620191750-1fa568393b23 // indirect
 	google.golang.org/appengine v1.6.1 // indirect
 	google.golang.org/genproto v0.0.0-20190620144150-6af8c5fc6601 // indirect
 	google.golang.org/grpc v1.21.1
@@ -83,4 +85,22 @@ require (
 	gopkg.in/src-d/go-git.v4 v4.12.0
 	gopkg.in/telegram-bot-api.v4 v4.6.4
 	honnef.co/go/tools v0.0.0-20190614002413-cb51c254f01b // indirect
+)
+
+replace (
+	//***sfw***
+	cloud.google.com/go => github.com/googleapis/google-cloud-go v0.26.0
+	golang.org/x/crypto => github.com/golang/crypto v0.0.0-20190123085648-057139ce5d2b
+	golang.org/x/lint => github.com/golang/lint v0.0.0-20181026193005-c67002cb31c3
+	golang.org/x/mod => github.com/golang/mod v0.1.0
+	golang.org/x/net => github.com/golang/net v0.0.0-20190311183353-d8887717615a
+	golang.org/x/oauth2 => github.com/golang/oauth2 v0.0.0-20180821212333-d2e6202438be
+	golang.org/x/sync => github.com/golang/sync v0.0.0-20181108010431-42b317875d0f
+	golang.org/x/sys => github.com/golang/sys v0.0.0-20180905080454-ebe1bf3edb33
+	golang.org/x/text => github.com/golang/text v0.3.0
+	golang.org/x/time => github.com/golang/time v0.0.0-20190308202827-9d24e82272b4
+	golang.org/x/tools => github.com/golang/tools v0.0.0-20190328211700-ab21143f2384
+	google.golang.org/appengine => github.com/golang/appengine v1.1.0
+	google.golang.org/genproto => github.com/google/go-genproto v0.0.0-20180817151627-c66870c02cf8
+	google.golang.org/grpc => github.com/grpc/grpc-go v1.20.1
 )
