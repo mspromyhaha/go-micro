@@ -13,13 +13,13 @@ import (
 )
 
 type service struct {
-	opts Options
+	opts Options //***sfw***Options字段
 
 	once sync.Once
 }
 
 func newService(opts ...Option) Service {
-	options := newOptions(opts...)
+	options := newOptions(opts...) //***sfw***Options从new函数获得
 
 	options.Client = &clientWrapper{
 		options.Client,
@@ -37,13 +37,13 @@ func newService(opts ...Option) Service {
 // which parses command line flags. cmd.Init is only called
 // on first Init.
 func (s *service) Init(opts ...Option) {
-	// process options
+	// process options						//***sfw***Options在这里初始化
 	for _, o := range opts {
 		o(&s.opts)
 	}
 
 	s.once.Do(func() {
-		// Initialise the command flags, overriding new service
+		// Initialise the command flags, overriding new service	//***sfw***Options 从 cmd 参数获得
 		_ = s.opts.Cmd.Init(
 			cmd.Broker(&s.opts.Broker),
 			cmd.Registry(&s.opts.Registry),
